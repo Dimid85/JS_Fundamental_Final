@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>Система розумного будинку</title>
+</head>
+
+<body>
+   <h1>Система розумного будинку</h1>
+
+   <h2>Реєстрація</h2>
+   <form id="register-form">
+      <label for="register-username">Ім'я користувача:</label>
+      <input type="text" id="register-username" required>
+      <br>
+      <label for="register-password">Пароль (пароль повинен містити принаймні одну цифру, одну малу літеру, одну велику
+         літеру і мати довжину не менше 8 символів):</label>
+      <input type="password" id="register-password" required>
+      <br>
+      <button type="submit">Зареєструватися</button>
+   </form>
+
+   <h2>Авторизація</h2>
+   <form id="login-form">
+      <label for="login-username">Ім'я користувача:</label>
+      <input type="text" id="login-username" required>
+      <br>
+      <label for="login-password">Пароль:</label>
+      <input type="password" id="login-password" required>
+      <br>
+      <button type="submit">Увійти</button>
+   </form>
+
+   <h2>Додати компонент</h2>
+   <form id="add-light-form">
+      <h3>Світильник</h3>
+      <label for="light-name">Назва:</label>
+      <input type="text" id="light-name" required>
+      <br>
+      <label for="light-brightness">Яскравість (-100 - 100):</label>
+      <input type="number" id="light-brightness" min="-100" max="100" required>
+      <br>
+      <label for="light-color">Колір (червоний, зелений, синій):</label>
+      <input type="text" id="light-color" required>
+      <br>
+      <label for="light-enabled">Включити:</label>
+      <input type="checkbox" id="light-enabled">
+      <br>
+      <button type="submit">Додати світильник</button>
+   </form>
+
+   <form id="add-heating-form">
+      <h3>Обігрів</h3>
+      <label for="heating-name">Назва:</label>
+      <input type="text" id="heating-name" required>
+      <br>
+      <label for="heating-temperature">Температура (15 - 70):</label>
+      <input type="number" id="heating-temperature" min="15" max="70" required>
+      <br>
+      <label for="heating-enabled">Включити:</label>
+      <input type="checkbox" id="heating-enabled">
+      <br>
+      <button type="submit">Додати обігрів</button>
+   </form>
+
+   <form id="add-blinds-form">
+      <h3>Жалюзі</h3>
+      <label for="blinds-name">Назва:</label>
+      <input type="text" id="blinds-name" required>
+      <br>
+      <label for="blinds-opening">Відкритість (0 - 100):</label>
+      <input type="number" id="blinds-opening" min="0" max="100" required>
+      <br>
+      <label for="blinds-enabled">Включити:</label>
+      <input type="checkbox" id="blinds-enabled">
+      <br>
+      <button type="submit">Додати жалюзі</button>
+   </form>
+
+   <form id="add-television-form">
+      <h3>Телевізор</h3>
+      <label for="television-name">Назва:</label>
+      <input type="text" id="television-name" required>
+      <br>
+      <label for="television-channels">Канали (розділяйте комами):</label>
+      <input type="text" id="television-channels" required>
+      <br>
+      <label for="television-volume">Гучність (0 - 100):</label>
+      <input type="number" id="television-volume" min="0" max="100" required>
+      <br>
+      <label for="television-enabled">Включити:</label>
+      <input type="checkbox" id="television-enabled">
+      <br>
+      <button type="submit">Додати телевізор</button>
+   </form>
+
+   <h2>Видалити компонент</h2>
+   <form id="remove-component">
+      <label for="component-name">Назва компонента:</label>
+      <input type="text" id="component-name" required>
+      <br>
+      <button type="submit">Видалити компонент</button>
+   </form>
+
+   <h2>Стан компонентів</h2>
+   <button id="component-status-button">Отримати стан компонентів</button>
+   <pre id="component-status"></pre>
+
+   <!-- Модальне вікно -->
+   <div id="component-status-modal" class="modal">
+      <div id="component-status-modal-content" class="modal-content"></div>
+      <button id="close-modal-button">Закрити</button>
+   </div>
+
+   <script src="index.js"></script>
+</body>
+
+</html>

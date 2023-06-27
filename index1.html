@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="UTF-8">
+   <title>Розумний будинок</title>
+   <style>
+      /* Стилі для кнопок */
+      .button {
+         display: inline-block;
+         padding: 10px 20px;
+         font-size: 16px;
+         background-color: #4CAF50;
+         color: white;
+         text-align: center;
+         cursor: pointer;
+         border: none;
+         border-radius: 4px;
+      }
+
+      .button:hover {
+         background-color: #45a049;
+      }
+
+      /* Стилі для стану датчиків */
+      .sensor {
+         margin-bottom: 10px;
+      }
+
+      .sensor span {
+         font-weight: bold;
+      }
+
+      .sensor.on {
+         color: green;
+      }
+
+      .sensor.off {
+         color: red;
+      }
+   </style>
+</head>
+
+<body>
+   <h1>Розумний будинок</h1>
+
+   <div class="sensor" id="motionSensor">
+      <span>Датчик руху:</span>
+      <span id="motionStatus" class="off">Вимкнено</span>
+   </div>
+
+   <div class="sensor" id="waterSensor">
+      <span>Датчик води:</span>
+      <span id="waterStatus" class="off">Вимкнено</span>
+   </div>
+
+   <h2>Пульт до телевізора</h2>
+   <button id="tvPowerButton" class="button">Увімкнути/Вимкнути</button>
+   <button id="tvVolumeUpButton" class="button">Збільшити гучність</button>
+   <button id="tvVolumeDownButton" class="button">Зменшити гучність</button>
+
+   <script>
+      // Отримуємо посилання на елементи датчиків та кнопок
+      let motionSensor = document.getElementById("motionSensor");
+      let motionStatus = document.getElementById("motionStatus");
+      let waterSensor = document.getElementById("waterSensor");
+      let waterStatus = document.getElementById("waterStatus");
+      let tvPowerButton = document.getElementById("tvPowerButton");
+      let tvVolumeUpButton = document.getElementById("tvVolumeUpButton");
+      let tvVolumeDownButton = document.getElementById("tvVolumeDownButton");
+
+      // Створюємо функції для зміни стану датчиків
+      function enableMotionSensor() {
+         motionStatus.textContent = "Увімкнено";
+         motionSensor.classList.remove("off");
+         motionSensor.classList.add("on");
+      }
+
+      function disableMotionSensor() {
+         motionStatus.textContent = "Вимкнено";
+         motionSensor.classList.remove("on");
+         motionSensor.classList.add("off");
+      }
+
+      function enableWaterSensor() {
+         waterStatus.textContent = "Увімкнено";
+         waterSensor.classList.remove("off");
+         waterSensor.classList.add("on");
+      }
+
+      function disableWaterSensor() {
+         waterStatus.textContent = "Вимкнено";
+         waterSensor.classList.remove("on");
+         waterSensor.classList.add("off");
+      }
+
+      // Встановлюємо обробники подій для кнопок
+      tvPowerButton.addEventListener("click", function () {
+         // Виконуємо дії для увімкнення/вимкнення телевізора
+         console.log("Увімкнути/Вимкнути телевізор");
+         // Викликати функцію або зробити AJAX-виклик для взаємодії з телевізором
+      });
+
+      tvVolumeUpButton.addEventListener("click", function () {
+         // Виконуємо дії для збільшення гучності телевізора
+         console.log("Збільшити гучність телевізора");
+         // Викликати функцію або зробити AJAX-виклик для взаємодії з телевізором
+      });
+
+      tvVolumeDownButton.addEventListener("click", function () {
+         // Виконуємо дії для зменшення гучності телевізора
+         console.log("Зменшити гучність телевізора");
+         // Викликати функцію або зробити AJAX-виклик для взаємодії з телевізором
+      });
+
+      // Симулюємо зміну стану датчиків
+      setTimeout(function () {
+         enableMotionSensor();
+      }, 2000);
+
+      setTimeout(function () {
+         enableWaterSensor();
+      }, 4000);
+   </script>
+</body>
+
+</html>

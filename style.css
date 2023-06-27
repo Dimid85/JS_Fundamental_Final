@@ -1,0 +1,133 @@
+/* Стилі для форми реєстрації */
+#registration-form {
+   margin: 20px;
+}
+
+/* Стилі для полів вводу */
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="password"] {
+   width: 100%;
+   padding: 10px;
+   margin-bottom: 15px;
+   border: 1px solid #ccc;
+   border-radius: 4px;
+   font-size: 16px;
+}
+
+/* Стилі для міток полів вводу */
+label {
+   font-weight: bold;
+}
+
+/* Стилі для кнопок */
+button {
+   padding: 12px 20px;
+   background-color: #4CAF50;
+   color: white;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+   font-size: 16px;
+}
+
+/* Стилі для кнопки "Створити новий дім" */
+#create-new-home {
+   display: none;
+   margin-top: 15px;
+}
+
+/* Стилі для форми вибору датчиків */
+#sensor-selection-form {
+   display: none;
+   margin-top: 15px;
+}
+
+/* Стилі для чекбоксів і міток */
+input[type="checkbox"] {
+   display: none;
+}
+
+label {
+   display: block;
+   position: relative;
+   padding-left: 25px;
+   margin-bottom: 12px;
+   cursor: pointer;
+   font-size: 16px;
+}
+
+/* Стилі для стилізованих чекбоксів */
+label:before {
+   content: "";
+   display: inline-block;
+   width: 18px;
+   height: 18px;
+   margin-right: 10px;
+   position: absolute;
+   left: 0;
+   top: 2px;
+   background-color: #fff;
+   border: 2px solid #ccc;
+   border-radius: 4px;
+}
+
+input[type="checkbox"]:checked+label:before {
+   background-color: #4CAF50;
+   border-color: #4CAF50;
+}
+
+/* Стилі для вибраних датчиків */
+#selected-sensors-container {
+   margin-top: 15px;
+}
+
+#selected-sensors-container button {
+   margin-right: 10px;
+   margin-bottom: 10px;
+   background-color: #4CAF50;
+   color: white;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+   font-size: 14px;
+   padding: 8px 16px;
+}
+
+/* Стилі для повідомлення про успішне створення дому */
+.success-message {
+   color: #4CAF50;
+   font-size: 18px;
+   margin-top: 15px;
+}
+
+/* Стилі для контейнера з кнопками датчика */
+.sensor-buttons-container {
+   margin-bottom: 10px;
+}
+
+/* Стилі для кнопки датчика */
+.sensor-button {
+   background-color: #4CAF50;
+   color: white;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+   font-size: 16px;
+   padding: 8px 16px;
+}
+
+/* Стилі для кнопок стану */
+.state-button {
+   margin-left: 10px;
+   background-color: #555;
+}
+
+.state-button:hover {
+   background-color: #333;
+}
+
+.state-button:focus {
+   outline: none;
+}
