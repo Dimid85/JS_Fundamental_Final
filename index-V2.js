@@ -17,11 +17,10 @@ class SmartHome {
    }
  
    getAllComponentStates() {
-     return this.components.map(component => ({
-       name: component.name,
-       state: component.getState(),
-     }));
-   }
+    return this.components.map(component => component);
+  }
+  
+  
    toggleComponentState(component) {
      component.toggleState();
    }
@@ -70,107 +69,108 @@ class SmartHome {
  }
  
  // Клас "Світильник"
- class Light extends SmartComponent {
-   constructor(name) {
-     super(name);
-     this.brightness = 0;
-     this.color = 'white';
-   }
- 
-   setBrightness(brightness) {
-     this.brightness = Math.min(Math.max(brightness, -100), 100);
-   }
- 
-   setColor(color) {
-     if (['red', 'blue', 'green', 'pink'].includes(color)) {
-       this.color = color;
-     }
-   }
- 
-   getState() {
-     return {
-       ...super.getState(),
-       brightness: this.brightness,
-       color: this.color,
-     };
-   }
- }
- 
- // Клас "Обігрів"
- class Heating extends SmartComponent {
-   constructor(name) {
-     super(name);
-     this.temperature = 0;
-   }
- 
-   setTemperature(temperature) {
-     this.temperature = Math.min(Math.max(temperature, 15), 70);
-   }
- 
-   getState() {
-     return {
-       ...super.getState(),
-       temperature: this.temperature,
-     };
-   }
- }
- 
- // Клас "Жалюзі"
- class Blinds extends SmartComponent {
-   constructor(name) {
-     super(name);
-     this.openingPercentage = 0;
-   }
- 
-   setOpenPercentage(openingPercentage) {
-     this.openingPercentage = Math.min(Math.max(openingPercentage, 0), 100);
-   }
- 
-   getState() {
-     return {
-       ...super.getState(),
-       openingPercentage: this.openingPercentage,
-     };
-   }
- }
- 
- // Клас "Телевізор"
- class Television extends SmartComponent {
-   constructor(name) {
-     super(name);
-     this.power = false;
-     this.currentChannelIndex = 0;
-     this.channels = [];
-     this.volume = 0;
-   }
- 
-   togglePower() {
-     this.power = !this.power;
-   }
- 
-   setChannels(channels) {
-     this.channels = channels;
-   }
- 
-   changeChannel(index) {
-     if (index >= 0 && index < this.channels.length) {
-       this.currentChannelIndex = index;
-     }
-   }
- 
-   setVolume(volume) {
-     this.volume = Math.min(Math.max(volume, 0), 100);
-   }
- 
-   getState() {
-     return {
-       ...super.getState(),
-       power: this.power ? 'ON' : 'OFF',
-       channel: this.channels[this.currentChannelIndex],
-       volume: this.volume,
-     };
-   }
- }
+class Light extends SmartComponent {
+  constructor(name) {
+    super(name);
+    this.brightness = 0;
+    this.color = 'white';
+  }
+
+  setBrightness(brightness) {
+    this.brightness = Math.min(Math.max(brightness, -100), 100);
+  }
+
+  setColor(color) {
+    if (['red', 'blue', 'green', 'pink'].includes(color)) {
+      this.color = color;
+    }
+  }
+
+  getState() {
+    return {
+      ...super.getState(),
+      brightness: this.brightness,
+      color: this.color,
+    };
+  }
+}
+
+// Клас "Обігрів"
+class Heating extends SmartComponent {
+  constructor(name) {
+    super(name);
+    this.temperature = 0;
+  }
+
+  setTemperature(temperature) {
+    this.temperature = Math.min(Math.max(temperature, 15), 70);
+  }
+
+  getState() {
+    return {
+      ...super.getState(),
+      temperature: this.temperature,
+    };
+  }
+}
+
+// Клас "Жалюзі"
+class Blinds extends SmartComponent {
+  constructor(name) {
+    super(name);
+    this.openingPercentage = 0;
+  }
+
+  setOpenPercentage(openingPercentage) {
+    this.openingPercentage = Math.min(Math.max(openingPercentage, 0), 100);
+  }
+
+  getState() {
+    return {
+      ...super.getState(),
+      openingPercentage: this.openingPercentage,
+    };
+  }
+}
+
+// Клас "Телевізор"
+class Television extends SmartComponent {
+  constructor(name) {
+    super(name);
+    this.power = false;
+    this.currentChannelIndex = 0;
+    this.channels = [];
+    this.volume = 0;
+  }
+
+  togglePower() {
+    this.power = !this.power;
+  }
+
+  setChannels(channels) {
+    this.channels = channels;
+  }
+
+  changeChannel(index) {
+    if (index >= 0 && index < this.channels.length) {
+      this.currentChannelIndex = index;
+    }
+  }
+
+  setVolume(volume) {
+    this.volume = Math.min(Math.max(volume, 0), 100);
+  }
+
+  getState() {
+    return {
+      ...super.getState(),
+      power: this.power ? 'ON' : 'OFF',
+      channel: this.channels[this.currentChannelIndex],
+      volume: this.volume,
+    };
+  }
+}
+
  
  // Клас "Web-інтерфейс"
  class WebInterface {
@@ -389,19 +389,73 @@ class SmartHome {
    }
  
    handleComponentStatus() {
-     const componentStates = this.smartHome.getAllComponentStates();
-     const userData = this.getUserData();
- 
-     const modalContent = document.createElement('div');
-     modalContent.innerHTML = `
-       <h2>Component States</h2>
-       <pre>${JSON.stringify(componentStates.map(component => ({...component, state: component.state ? 'On' : 'Off'})), null, 2)}</pre>
-       <h2>User Data</h2>
-       <pre>${JSON.stringify(userData, null, 2)}</pre>
-     `;
- 
-     this.openModal(modalContent);
-   }
+    const componentStates = this.smartHome.getAllComponentStates();
+    const userData = this.getUserData();
+  
+    const modalContent = document.createElement('div');
+    modalContent.innerHTML = `
+      <h2>Component States</h2>
+      <pre>${this.formatComponentStates(componentStates)}</pre>
+      <h2>User Data</h2>
+      <pre>${this.formatObject(userData)}</pre>
+    `;
+  
+    this.openModal(modalContent);
+  }
+  
+  formatComponentStates(componentStates) {
+    if (componentStates) {
+      let result = '';
+      for (const component of componentStates) {
+        let state;
+        if (component.userState !== undefined) {
+          state = component.userState ? 'On' : 'Off';
+        } else {
+          state = 'Off';
+        }
+  
+        let info = `Name: ${component.name}, State: ${state}`;
+  
+        // Отримання додаткових властивостей для кожного типу компонента
+        if (component instanceof Light) {
+          info += `, Brightness: ${component.brightness}, Color: ${component.color}`;
+        } else if (component instanceof Heating) {
+          info += `, Temperature: ${component.temperature}`;
+        } else if (component instanceof Blinds) {
+          info += `, Opening Percentage: ${component.openingPercentage}`;
+        } else if (component instanceof Television) {
+          info += `, Power: ${component.power ? 'ON' : 'OFF'}, Channel: ${component.channels[component.currentChannelIndex]}, Volume: ${component.volume}`;
+        }
+  
+        result += info + '\n';
+      }
+      return result;
+    } else {
+      return 'No data available';
+    }
+  }
+  
+
+  
+  formatObject(obj) {
+    if (obj) {
+      let result = '';
+      for (const key in obj) {
+        result += `${key}: ${obj[key]}\n`;
+      }
+      return result;
+    } else {
+      return 'No data available';
+    }
+  }
+  
+  
+  
+  
+  
+  
+  
+  
  
    getUserData() {
      if (this.currentUser) {
@@ -423,5 +477,7 @@ class SmartHome {
  const smartHome = new SmartHome();
  
  // Створення об'єкту "Web-інтерфейс"
- const webInterface = new WebInterface(smartHome);
- 
+const webInterface = new WebInterface(smartHome);
+
+// Виведення стану компонентів
+webInterface.handleComponentStatus();
